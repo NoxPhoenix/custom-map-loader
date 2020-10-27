@@ -1,10 +1,20 @@
 function loadMap (mapId) {
+  $(`#card-${mapId} .card-overlay`).css('display', 'flex');
   return ipcRenderer.invoke('loadMap', mapId)
+    .then((mapName) => {
+      $('#toast-body').text(`${mapName} successfully loaded into Rocket League!`);
+      $(`#card-${mapId} .card-overlay`).hide();
+      $('.toast').toast('show');
+    })
     .catch((err) => ipcRenderer.send('flashError', err));
 }
 
 function repairFiles () {
   return ipcRenderer.invoke('repairGameFiles')
+    .then((mapName) => {
+      $('#toast-body').text('Original map files successfully re-loaded back into Rocket League!');
+      $('.toast').toast('show');
+    })
     .catch((err) => ipcRenderer.send('flashError', err));
 }
 

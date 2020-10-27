@@ -26,6 +26,25 @@
   color: #e99941
 }
 
+.card-overlay {
+  background-color: #000000b3;
+  z-index: 2;
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  border-radius: 0.25rem;
+  display: none;
+}
+
+.loading-gif {
+  vertical-align: middle;
+  border-style: none;
+  max-width: 60px;
+  max-height: 60px;
+  position: relative;
+  margin: auto;
+}
+
 .btn-group {
   border-color: aliceblue;
   margin-left: 10px;

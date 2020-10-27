@@ -6,7 +6,8 @@
       window.jQuery = window.$ = require('jquery');
     </script>
     <link href=".\bootstrap\dist\css\bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/v4-shims.css"> -->
     <link rel="stylesheet" href="..\css\style.css" />
     <script src=".\bootstrap\dist\js\bootstrap.bundle.min.js"></script>
     <title>Custom Map Loader</title>
@@ -45,18 +46,35 @@
   </header>
   <body>
     <section id="maps">
+      <div style="position: absolute; top: 75px; right: 8px; z-index: 99;">
+        <div style="position: relative; top: 0; right: 0;min-width: 300px;">
+          <div class="toast" id="myToast" data-delay="5000">
+            <div class="toast-header" style="color: #ffffff; background-color: rgb(41 138 44);">
+                <strong class="mr-auto"><i class="fa fa-truck-loading"></i> Success</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+            </div>
+            <div id="toast-body" class="toast-body" style="background-color: #000000ad; color: white">
+                Map successfully loaded!
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="container my-cont">
         <div class="row" id="cards">
           </div>
         </div>
-      </section>
+    </section>
 
 
     <!-- You can also require other files to run in this process -->
+    <script>
+      $(function() {
+          $('.toast').toast('hide');
+      });
+  </script>
     <script src="./contents/scripts/makeCards.js"></script>
     <script src="./contents/scripts/manageMaps.js"></script>
     <!-- <script>ipcRenderer.send('logDirs')</script>s -->
-    <script src="../renderer.js"></script>
   </body>
   <footer>
   </footer>

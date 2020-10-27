@@ -19,7 +19,10 @@ const buildCard = (mapData) => {
     : '';
   return `
   <div class="col-*-*">
-      <div class="card text-center" ${descriptionBlock}>
+      <div class="card text-center" ${descriptionBlock} id="card-${id}">
+        <div class="card-overlay">
+          <img src="../assets/ball.gif" class="loading-gif">
+        </div>
         <img src="${image}" class="card-img-top">
         <div class="card-body">
           <h6 class="card-title">${title}</h6>
