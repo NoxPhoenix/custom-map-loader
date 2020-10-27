@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script>
+      window.jQuery = window.$ = require('jquery');
+    </script>
+    <link href=".\bootstrap\dist\css\bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="..\css\style.css" />
+    <script src=".\bootstrap\dist\js\bootstrap.bundle.min.js"></script>
+    <title>Custom Map Loader</title>
+    <script>
+      $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();   
+      });
+    </script>
+
+  </head>
+  <header>
+    <nav class="navbar bg-dark navbar-dark fixed-top">
+      <div class="form-inline">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" id="searchBar" spellcheck="false" onkeyup="filter()">
+        <i class="fa fa-times-circle" id="clearSearch" onclick="clearSearch()"></i>
+      </div>
+        <div class="topnav-right inline">
+          <!-- <button class="btn btn-primary repair-btn" type="button" onclick="openWebsite()" style="margin-right: 5px;">Download More Maps!</button> -->
+          <button class="btn btn-primary repair-btn" type="button" onclick="importNewMap()" style="margin-right: 5px;">Import New Map</button>
+          <button class="btn btn-primary repair-btn" type="button" onclick="repairFiles()">Repair Game Files</button>
+            <div class="dropdown">
+              <!--Trigger-->
+              <a class="btn-floating btn-lg black dropdown-toggle"type="button" id="dropdownMenu3" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" style="color: white;"><i class="fa fa-bars"></i></a>
+              <br>
+              <!--Menu-->
+              <div class="dropdown-menu dropdown-primary">
+                <a class="dropdown-item" href="#" onclick="openCustomMapFolder()"></i>Open Custom Map Folder</a>
+                <a class="dropdown-item" href="#" onclick="setCustomMapFolder()"></i>Change Custom Map Folder</a>
+                <a class="dropdown-item" href="#" onclick="setRocketLeagueFolder()"></i>Change Rocket League Folder</a>
+                <!-- <a class="dropdown-item" href="#"><i class="far fa-envelope"></i>&nbsp;&nbsp;Check mail</a> -->
+              </div>
+            </div>
+          </div>
+    </nav>
+  </header>
+  <body>
+    <section id="maps">
+      <div class="container my-cont">
+        <div class="row" id="cards">
+          </div>
+        </div>
+      </section>
+
+
+    <!-- You can also require other files to run in this process -->
+    <script src="./contents/scripts/makeCards.js"></script>
+    <script src="./contents/scripts/manageMaps.js"></script>
+    <!-- <script>ipcRenderer.send('logDirs')</script>s -->
+    <script src="../renderer.js"></script>
+  </body>
+  <footer>
+  </footer>
+</html>

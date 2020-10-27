@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html style="border: 2px solid white; height: 100%;">
+  <head>
+    <meta charset="UTF-8">
+      <script>
+        window.jQuery = window.$ = require('jquery');
+      </script>
+      <link href=".\bootstrap\dist\css\bootstrap.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="..\css\style.css" />
+      <script src=".\bootstrap\dist\js\bootstrap.bundle.min.js"></script>
+      <script src="./contents/scripts/startup.js"></script>
+      <title>Custom Map Loader</title>
+      
+    </head>
+    <body>
+      <div>
+        <div class="prompt text-center">
+          <h6>Please select your custom map folder.</h6>
+        </div>
+        <div class="container btn-cont">
+          <button class="btn btn-primary" onclick="load()" type="button">Load your map directory!</button>
+        </div>
+      </div>
+    <!-- You can also require other files to run in this process -->
+  </body>
+</html>
