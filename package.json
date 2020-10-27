@@ -1,7 +1,7 @@
 {
   "name": "CustomMaploader",
   "productName": "Custom Map Loader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
