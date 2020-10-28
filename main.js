@@ -1,12 +1,13 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require('electron');
+const Promise = require('bluebird');
 const fs = require('fs');
 const yargs = require('yargs/yargs');
 
 global.AppPath = app.getPath('userData');
 global.AppData = app.getAppPath();
 global.ExecPath = process.execPath;
-const { argv } = yargs(process.argv);
+const { argv, parse } = yargs(process.argv);
 const configExists = fs.existsSync(`${AppPath}/config.json`);
 if (!configExists) fs.writeFileSync(`${AppPath}/config.json`, JSON.stringify({}));
 
@@ -113,10 +114,26 @@ const handleArgs = () => {
   return importMap(argv.map, state.getFromState('customMapDirectory'));
 };
 
+const gotTheLock = app.requestSingleInstanceLock();
+
+const handleSecond = () => {
+  if (!gotTheLock) return app.quit().then(Promise.delay(500));
+  app.on('second-instance', (event, commandLine, workingDirectory) => {
+    const mainWindow = state.getFromState('mainWindow');
+    if (mainWindow) {
+      if (mainWindow.isMinimized()) mainWindow.restore();
+      mainWindow.focus();
+    }
+    return importMap(parse(commandLine).allowFileAccessFromFiles, state.getFromState('customMapDirectory'));
+  });
+  return null;
+};
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 initializeApp()
+  .then(handleSecond)
   .then(handleArgs)
   .then(app.whenReady)
   .then(createWindow);

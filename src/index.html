@@ -38,7 +38,7 @@
                 <a class="dropdown-item" href="#" onclick="openCustomMapFolder()"></i>Open Custom Map Folder</a>
                 <a class="dropdown-item" href="#" onclick="setCustomMapFolder()"></i>Change Custom Map Folder</a>
                 <a class="dropdown-item" href="#" onclick="setRocketLeagueFolder()"></i>Change Rocket League Folder</a>
-                <!-- <a class="dropdown-item" href="#"><i class="far fa-envelope"></i>&nbsp;&nbsp;Check mail</a> -->
+                <!-- <a class="dropdown-item" href="#" onclick="logThing()"></i>Log Thing</a> -->
               </div>
             </div>
           </div>
@@ -74,7 +74,11 @@
   </script>
     <script src="./contents/scripts/makeCards.js"></script>
     <script src="./contents/scripts/manageMaps.js"></script>
-    <!-- <script>ipcRenderer.send('logDirs')</script>s -->
+    <!-- <script>
+      function logThing () {
+        ipcRenderer.send('logFile')
+      } -->
+    </script>
   </body>
   <footer>
   </footer>
