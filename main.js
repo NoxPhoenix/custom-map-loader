@@ -1,7 +1,9 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require('electron');
+const { ipcMain } = require('electron/main');
 const Promise = require('bluebird');
 const fs = require('fs');
+const path = require('path');
 const yargs = require('yargs/yargs');
 
 global.AppPath = app.getPath('userData');
@@ -16,8 +18,6 @@ require('./lib/openDirectory');
 const state = require('./lib/stateManager');
 const { importMap } = require('./lib/customMaps');
 require('./lib/manageMapFiles');
-const path = require('path');
-const { ipcMain } = require('electron/main');
 
 const config = require(`${AppPath}/config.json`);
 
