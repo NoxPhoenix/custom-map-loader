@@ -17,24 +17,24 @@ const buildCard = (mapData) => {
     const isMapCompleted = ipcRenderer.sendSync('checkIfCompleted', name);
     const likedClass = 'liked';
     const completedClass = 'done';
-    const orderFirstClass = 'order-first';
+    const escapedName = name.replace(/'/g, "\\\'");
 
     const title = (name.length > 43) ? `${name.substring(0, 39).trimEnd()}...` : name;
     const descriptionBlock = description
       ? `data-toggle="tooltip" data-placement="right" data-delay='{"show":"800"}' title="${description}"`
       : '';
     const heartHTML =
-    `<a id="heart-${id}" class="heart-container ${isMapInFavorites? likedClass: ''}" onclick="toggleFavorite(${id}, '${name}')">
+    `<a id="heart-${id}" class="heart-container ${isMapInFavorites? likedClass: ''}" onclick="toggleFavorite(${id}, '${escapedName}')">
       <i class="fa${isMapInFavorites? 's': 'r'} fa-heart fa-lg"></i>
     </a>`;
     const tickHTML =
-    `<a id="tick-${id}" class="tick-container ${isMapCompleted? completedClass: ''}" onclick="toggleFinish(${id}, '${name}')">
+    `<a id="tick-${id}" class="tick-container ${isMapCompleted? completedClass: ''}" onclick="toggleFinish(${id}, '${escapedName}')">
       <i class="fa${isMapCompleted? 's': 'r'} fa-check-circle fa-lg"></i>
     </a>`;
 
     return `
     <div class="col-*-*">
-        <div class="card text-center ${isMapInFavorites? orderFirstClass: ''}" ${descriptionBlock} id="card-${id}">
+        <div class="card text-center" ${descriptionBlock} id="card-${id}">
           <div class="card-overlay">
             <img src="../assets/ball.gif" class="loading-gif">
           </div>
