@@ -40,6 +40,32 @@
   display: none;
 }
 
+.heart-container {
+  position: absolute;
+  top: 2px;
+  right: 5px;
+  color: crimson;
+  cursor: pointer;
+  z-index: 99;
+}
+
+.heart-container:hover {
+  color: red;
+}
+
+.tick-container {
+  position: absolute;
+  top: 2px;
+  right: 33px;
+  color: green;
+  cursor: pointer;
+  z-index: 99;
+}
+
+.tick-container:hover {
+  color: limegreen;
+}
+
 .loading-gif {
   vertical-align: middle;
   border-style: none;

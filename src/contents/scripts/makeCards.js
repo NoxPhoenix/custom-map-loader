@@ -13,25 +13,42 @@ const buildCard = (mapData) => {
     image = `${appDirectory}/assets/imageNotFound.png`,
     description = null,
   } = mapData;
-  const title = (name.length > 43) ? `${name.substring(0, 39).trimEnd()}...` : name;
-  const descriptionBlock = description
-    ? `data-toggle="tooltip" data-placement="right" data-delay='{"show":"800"}' title="${description}"`
-    : '';
-  return `
-  <div class="col-*-*">
-      <div class="card text-center" ${descriptionBlock} id="card-${id}">
-        <div class="card-overlay">
-          <img src="../assets/ball.gif" class="loading-gif">
+    const isMapInFavorites = ipcRenderer.sendSync('checkIfLiked', name);
+    const isMapCompleted = ipcRenderer.sendSync('checkIfCompleted', name);
+    const likedClass = 'liked';
+    const completedClass = 'done';
+    const orderFirstClass = 'order-first';
+
+    const title = (name.length > 43) ? `${name.substring(0, 39).trimEnd()}...` : name;
+    const descriptionBlock = description
+      ? `data-toggle="tooltip" data-placement="right" data-delay='{"show":"800"}' title="${description}"`
+      : '';
+    const heartHTML =
+    `<a id="heart-${id}" class="heart-container ${isMapInFavorites? likedClass: ''}" onclick="toggleFavorite(${id}, '${name}')">
+      <i class="fa${isMapInFavorites? 's': 'r'} fa-heart fa-lg"></i>
+    </a>`;
+    const tickHTML =
+    `<a id="tick-${id}" class="tick-container ${isMapCompleted? completedClass: ''}" onclick="toggleFinish(${id}, '${name}')">
+      <i class="fa${isMapCompleted? 's': 'r'} fa-check-circle fa-lg"></i>
+    </a>`;
+
+    return `
+    <div class="col-*-*">
+        <div class="card text-center ${isMapInFavorites? orderFirstClass: ''}" ${descriptionBlock} id="card-${id}">
+          <div class="card-overlay">
+            <img src="../assets/ball.gif" class="loading-gif">
+          </div>
+            ${heartHTML}
+            ${tickHTML}
+          <img src="${image}" class="card-img-top">
+          <div class="card-body">
+            <h6 class="card-title">${title}</h6>
+            <p class="card-author" data-author="${author}">By: ${author}</p>
+            <a class="btn btn-primary button-load" id="load-btn-${id}" onclick="loadMap(${id})">Load</a>
         </div>
-        <img src="${image}" class="card-img-top">
-        <div class="card-body">
-          <h6 class="card-title">${title}</h6>
-          <p class="card-author" data-author="${author}">By: ${author}</p>
-          <a class="btn btn-primary button-load" id="load-btn-${id}" onclick="loadMap(${id})">Load</a>
       </div>
     </div>
-  </div>
-  `;
+    `;
 };
 
 const buildHTML = (maps) => {

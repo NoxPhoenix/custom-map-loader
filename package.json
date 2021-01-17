@@ -2,7 +2,7 @@
   "name": "CustomMaploader",
   "productName": "Custom Map Loader",
   "version": "1.3.0",
-  "description": "A minimal Electron application",
+  "description": "Rocket League Custom Map Loader",
   "main": "main.js",
   "scripts": {
     "start": "electron .",

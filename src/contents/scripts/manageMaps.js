@@ -9,6 +9,50 @@ function loadMap (mapId) {
     .catch((err) => ipcRenderer.send('flashError', err));
 }
 
+function toggleFavorite (mapId, mapName) {
+  const likedClass = 'liked';
+  const heartElement = $(`#heart-${mapId}`);
+
+  if (!heartElement.hasClass(likedClass)) {
+    return ipcRenderer.invoke('addFavorite', mapName)
+    .then(() => {
+      heartElement.addClass(likedClass);
+      heartElement.html('<i class="fas fa-heart fa-lg"></i>');
+    })
+    .catch((err) => ipcRenderer.send('flashError', err));
+  }
+  else {
+    return ipcRenderer.invoke('removeFavorite', mapName)
+    .then(() => {
+      heartElement.removeClass(likedClass);
+      heartElement.html('<i class="far fa-heart fa-lg"></i>');
+    })
+    .catch((err) => ipcRenderer.send('flashError', err));
+  }
+}
+
+function toggleFinish (mapId, mapName) {
+  const completedClass = 'done';
+  const tickElement = $(`#tick-${mapId}`);
+
+  if (!tickElement.hasClass(completedClass)) {
+    return ipcRenderer.invoke('addCompleted', mapName)
+    .then(() => {
+      tickElement.addClass(completedClass);
+      tickElement.html('<i class="fas fa-check-circle fa-lg"></i>');
+    })
+    .catch((err) => ipcRenderer.send('flashError', err));
+  }
+  else {
+    return ipcRenderer.invoke('removeCompleted', mapName)
+    .then(() => {
+      tickElement.removeClass(completedClass);
+      tickElement.html('<i class="far fa-check-circle fa-lg"></i>');
+    })
+    .catch((err) => ipcRenderer.send('flashError', err));
+  }
+}
+
 function repairFiles () {
   return ipcRenderer.invoke('repairGameFiles')
     .then((mapName) => {
