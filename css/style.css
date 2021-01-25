@@ -28,6 +28,7 @@
 
 .card-img-top {
   max-height: 35%;
+  object-fit: cover;
 }
 
 .card-overlay {
@@ -51,19 +52,6 @@
 
 .heart-container:hover {
   color: red;
-}
-
-.tick-container {
-  position: absolute;
-  top: 2px;
-  right: 33px;
-  color: green;
-  cursor: pointer;
-  z-index: 99;
-}
-
-.tick-container:hover {
-  color: limegreen;
 }
 
 .loading-gif {

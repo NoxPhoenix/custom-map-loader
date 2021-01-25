@@ -14,9 +14,7 @@ const buildCard = (mapData) => {
     description = null,
   } = mapData;
     const isMapInFavorites = ipcRenderer.sendSync('checkIfLiked', name);
-    const isMapCompleted = ipcRenderer.sendSync('checkIfCompleted', name);
     const likedClass = 'liked';
-    const completedClass = 'done';
     const escapedName = name.replace(/'/g, "\\\'");
 
     const title = (name.length > 43) ? `${name.substring(0, 39).trimEnd()}...` : name;
@@ -27,10 +25,6 @@ const buildCard = (mapData) => {
     `<a id="heart-${id}" class="heart-container ${isMapInFavorites? likedClass: ''}" onclick="toggleFavorite(${id}, '${escapedName}')">
       <i class="fa${isMapInFavorites? 's': 'r'} fa-heart fa-lg"></i>
     </a>`;
-    const tickHTML =
-    `<a id="tick-${id}" class="tick-container ${isMapCompleted? completedClass: ''}" onclick="toggleFinish(${id}, '${escapedName}')">
-      <i class="fa${isMapCompleted? 's': 'r'} fa-check-circle fa-lg"></i>
-    </a>`;
 
     return `
     <div class="col-*-*">
@@ -39,7 +33,6 @@ const buildCard = (mapData) => {
             <img src="../assets/ball.gif" class="loading-gif">
           </div>
             ${heartHTML}
-            ${tickHTML}
           <img src="${image}" class="card-img-top">
           <div class="card-body">
             <h6 class="card-title">${title}</h6>

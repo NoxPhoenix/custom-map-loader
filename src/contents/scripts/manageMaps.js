@@ -31,28 +31,6 @@ function toggleFavorite (mapId, mapName) {
   }
 }
 
-function toggleFinish (mapId, mapName) {
-  const completedClass = 'done';
-  const tickElement = $(`#tick-${mapId}`);
-
-  if (!tickElement.hasClass(completedClass)) {
-    return ipcRenderer.invoke('addCompleted', mapName)
-    .then(() => {
-      tickElement.addClass(completedClass);
-      tickElement.html('<i class="fas fa-check-circle fa-lg"></i>');
-    })
-    .catch((err) => ipcRenderer.send('flashError', err));
-  }
-  else {
-    return ipcRenderer.invoke('removeCompleted', mapName)
-    .then(() => {
-      tickElement.removeClass(completedClass);
-      tickElement.html('<i class="far fa-check-circle fa-lg"></i>');
-    })
-    .catch((err) => ipcRenderer.send('flashError', err));
-  }
-}
-
 function repairFiles () {
   return ipcRenderer.invoke('repairGameFiles')
     .then((mapName) => {
