@@ -36,6 +36,19 @@
   display: none;
 }
 
+.heart-container {
+  position: absolute;
+  top: 2px;
+  right: 5px;
+  color: crimson;
+  cursor: pointer;
+  z-index: 99;
+}
+
+.heart-container:hover {
+  color: red;
+}
+
 .loading-gif {
   vertical-align: middle;
   border-style: none;
@@ -172,7 +185,7 @@
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
- 
+
   /* Position the tooltip text - see examples below! */
   position: absolute;
   z-index: 1;
