@@ -26,6 +26,10 @@
   color: #e99941
 }
 
+.card-img-top {
+  height: 88.88px;
+}
+
 .card-overlay {
   background-color: #000000b3;
   z-index: 2;
@@ -172,7 +176,7 @@
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
- 
+
   /* Position the tooltip text - see examples below! */
   position: absolute;
   z-index: 1;
