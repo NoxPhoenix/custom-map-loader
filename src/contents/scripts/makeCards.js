@@ -22,7 +22,7 @@ const buildCard = (mapData) => {
       ? `data-toggle="tooltip" data-placement="right" data-delay='{"show":"800"}' title="${description}"`
       : '';
     const heartHTML =
-    `<a id="heart-${id}" class="heart-container ${isMapInFavorites? likedClass: ''}" onclick="toggleFavorite(${id}, '${escapedName}')">
+    `<a id="heart-${id}" class="btn btn-heart ${isMapInFavorites? likedClass: ''}" onclick="toggleFavorite(${id}, '${escapedName}')">
       <i class="fa${isMapInFavorites? 's': 'r'} fa-heart fa-lg"></i>
     </a>`;
 
@@ -32,12 +32,14 @@ const buildCard = (mapData) => {
           <div class="card-overlay">
             <img src="../assets/ball.gif" class="loading-gif">
           </div>
-            ${heartHTML}
           <img src="${image}" class="card-img-top">
           <div class="card-body">
             <h6 class="card-title">${title}</h6>
             <p class="card-author" data-author="${author}">By: ${author}</p>
-            <a class="btn btn-primary button-load" id="load-btn-${id}" onclick="loadMap(${id})">Load</a>
+            <div class="btn-bottom-cont">
+              <a class="btn btn-primary button-load" id="load-btn-${id}" onclick="loadMap(${id})">Load</a>
+              ${heartHTML}
+            </div>
         </div>
       </div>
     </div>

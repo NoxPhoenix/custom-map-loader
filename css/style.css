@@ -36,17 +36,12 @@
   display: none;
 }
 
-.heart-container {
-  position: absolute;
-  top: 2px;
-  right: 5px;
-  color: crimson;
-  cursor: pointer;
-  z-index: 99;
+.heart-cont:hover {
+  color: red;
 }
 
-.heart-container:hover {
-  color: red;
+.fa-heart {
+  vertical-align: -0.1em;
 }
 
 .loading-gif {
@@ -97,11 +92,22 @@
   background-color: #2a2a2a;
 }
 
+.btn-heart {
+  color: crimson;
+  height: fit-content;
+  width: 40px;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.btn-heart:hover {
+  color: red;
+  border-color: #0062cc;
+}
 
 .button-load {
-  float: bottom;
-  margin: 10px;
-  margin-top: auto;
+  flex-grow: 1;
+  margin-right: 7px;
   background-color: #606060;
   border-color: #ffffff;
 }
@@ -118,6 +124,12 @@
 
 .btn-cont {
   margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-bottom-cont {
+  margin: auto 7px 7px;
   display: flex;
   justify-content: center;
 }
