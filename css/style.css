@@ -36,10 +36,6 @@
   display: none;
 }
 
-.heart-cont:hover {
-  color: red;
-}
-
 .fa-heart {
   vertical-align: -0.1em;
 }
